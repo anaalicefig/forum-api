@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +45,7 @@ public class TopicosController {
   }
 
   @PostMapping
-  public ResponseEntity<TopicoDto> create(@RequestBody TopicoForm data, UriComponentsBuilder uriBuilder) {
+  public ResponseEntity<TopicoDto> create(@RequestBody @Valid TopicoForm data, UriComponentsBuilder uriBuilder) {
     Topico topico = data.converter(cursoRepository);
 
     topicoRepository.save(topico);
